@@ -1003,7 +1003,7 @@ class ClusterNode:
 
         # Read response
         try:
-            return await self.parse_response(connection, args[0], **kwargs)
+            return await asyncio.shield(self.parse_response(connection, args[0], **kwargs))
         finally:
             # Release connection
             self._free.append(connection)
